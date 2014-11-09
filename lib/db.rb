@@ -34,7 +34,7 @@ class BungModel < RedisOrm::Base
   end
 
   def reply_to_user_hash( email )
-    user_hash( email ) +'+'+ id + '@'
+    user_hash( email ) +'+'+ id
   end
 
   def user_hash( email )

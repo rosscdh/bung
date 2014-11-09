@@ -9,9 +9,13 @@ say what?
 1. send a list of email addresses
 
 ```
-curl -H "Accept: application/json" -H "Content-Type: application/json" -XPOST 'http://localhost:9292/v1/initial' -d '{"emails": ["userA@example.com", "userB@someotherexample.de", "userC@monkeypalace.eu"]}'
+curl -H "Accept: application/json" -H "Content-Type: application/json" -XPOST 'http://localhost:9292/v1/initial' -d '{"emails": ["userA@example.com", "userB@someotherexample.de", "userC@monkeypalace.eu"], "domain": "my_awesome_domain.com"}'
 
->> {"userA@example.com":"837b3c+8f498a3049d0013240a514109fe3e051@","userB@someotherexample.de":"c103a2+8f498a3049d0013240a514109fe3e051@","userC@monkeypalace.eu":"24ca58+8f498a3049d0013240a514109fe3e051@"}
+>> {
+    "userA@example.com":"837b3c+4b6ba9204a23013240b714109fe3e051@my_awesome_domain.com",
+    "userB@someotherexample.de":"c103a2+4b6ba9204a23013240b714109fe3e051@my_awesome_domain.com",
+    "userC@monkeypalace.eu":"24ca58+4b6ba9204a23013240b714109fe3e051@my_awesome_domain.com"
+}
 ```
 
 2. notice that the response hash consists of the :to_email => :user_hash+:record_hash@
@@ -25,9 +29,12 @@ curl -H "Accept: application/json" -H "Content-Type: application/json" -XPOST 'h
 9. query the api like so
 
 ```
-curl -H "Accept: application/json" -H "Content-Type: application/json" -XPOST 'http://localhost:9292/v1/responded' -d '{"from": "837b3c+8f498a3049d0013240a514109fe3e051@domain.com"}'
+curl -H "Accept: application/json" -H "Content-Type: application/json" -XPOST 'http://localhost:9292/v1/responded' -d '{"from": "837b3c+4b6ba9204a23013240b714109fe3e051"}'
 
->> {"c103a2+8f498a3049d0013240a514109fe3e051@":"userB@someotherexample.de","24ca58+8f498a3049d0013240a514109fe3e051@":"userC@monkeypalace.eu"}
+>> {
+    "c103a2+4b6ba9204a23013240b714109fe3e051@":"userB@someotherexample.de",
+    "24ca58+4b6ba9204a23013240b714109fe3e051@":"userC@monkeypalace.eu"
+}
 ``` 
 
 10. and now you can forward the email message (which you recieved just before you could query the bunghole) onto the listed recipients
