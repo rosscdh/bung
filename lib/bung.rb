@@ -16,6 +16,7 @@ module Bung
       end
 
       post "/" do
+        status 201
         service = Bung::RecieveEmailService.new params[:emails]
         Bung::API.append_domain service.process, params[:domain]
       end
@@ -27,6 +28,7 @@ module Bung
         requires :from, type: String, desc: "The email to email address, should be in form 'af68de+1af10ca049cb0132409414109fe3e051@domain.com' i.e. :identifier+:hash@domain.com"
       end
       post "/" do
+        status 202
         @domain = params[:from].split('@')[1]
         service = Bung::EmailResponseService.new params[:from]
         Bung::API.append_domain service.process, @domain

@@ -28,19 +28,67 @@ curl -H "Accept: application/json" -H "Content-Type: application/json" -XPOST 'h
 9. query the api like so
 
 ```
-curl -H "Accept: application/json" -H "Content-Type: application/json" -XPOST 'http://localhost:9292/v1/responded' -d '{"from": "837b3c+4b6ba9204a23013240b714109fe3e051@my_awesome_domain.com"}'
+curl -H "Accept: application/json" -H "Content-Type: application/json" -POST 'http://localhost:9292/v1/responded' -d '{"from": "837b3c+4b6ba9204a23013240b714109fe3e051@my_awesome_domain.com"}'
 
 >> {
     "c103a2+4b6ba9204a23013240b714109fe3e051@my_awesome_domain.com":"userB@someotherexample.de",
     "24ca58+4b6ba9204a23013240b714109fe3e051@my_awesome_domain.com":"userC@monkeypalace.eu"
 }
-``` 
+```
 
 
 10. Please note: You do not have to provide the domain here, as its extracted from the from value
 11. so now you know who is going to be recieving this reply.. so go ahead and send the email to them.. makeing sure that the reply-to and from are set as the specific user hash
 
 
+Apache Bench
+=====
+
+save the query for a responded request in test.json and run
+
+```
+ab -n 10000 -c 5 -H "Accept: application/json" -T "application/json" -p test.json http://localhost:9292/v1/responded
+
+Server Software:
+Server Hostname:        localhost
+Server Port:            9292
+
+Document Path:          /v1/responded
+Document Length:        181 bytes
+
+Concurrency Level:      5
+Time taken for tests:   21.266 seconds
+Complete requests:      10000
+Failed requests:        0
+Write errors:           0
+Total transferred:      2780000 bytes
+Total POSTed:           2330000
+HTML transferred:       1810000 bytes
+Requests per second:    470.24 [#/sec] (mean)
+Time per request:       10.633 [ms] (mean)
+Time per request:       2.127 [ms] (mean, across all concurrent requests)
+Transfer rate:          127.66 [Kbytes/sec] received
+                        107.00 kb/s sent
+                        234.66 kb/s total
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    0   0.0      0       0
+Processing:     3   10   8.2      9     159
+Waiting:        3   10   6.5      8     143
+Total:          3   11   8.2      9     159
+
+Percentage of the requests served within a certain time (ms)
+  50%      9
+  66%      9
+  75%     10
+  80%     10
+  90%     11
+  95%     30
+  98%     33
+  99%     34
+ 100%    159 (longest request)
+```
 
 Install
 -------
