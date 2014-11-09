@@ -24,7 +24,7 @@ curl -H "Accept: application/json" -H "Content-Type: application/json" -XPOST 'h
 5. the recipients each get the email with the reply-to/from being the '837b3c+8f498a3049d0013240a514109fe3e051@your_awesome_domain.com' value
 6. they respond (as they do)
 7. your service recieves the email and then sends the recipient (:hash@my_awesome_domain.com) email address.. i.e. '837b3c+8f498a3049d0013240a514109fe3e051@your_awesome_domain.com'
-8. yes, thats right its a bit weird.. I did say the recipient.. but its a reductive-boolean-union of the email address list
+8. yes, thats right its a bit weird.. I did say the recipient.. but its an exclusion-boolean-union of the email address list
 9. query the api like so
 
 ```
