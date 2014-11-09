@@ -4,15 +4,16 @@ gem 'rake'
 gem 'bundler'
 
 gem 'grape'
-# As per https://atechmedia.com/blog/general/tutorials/encrypting-signing-in-ruby
-# https://github.com/atech/encrypto-signo
-gem 'encrypto_signo'
 
-gem 'sequel'
-gem 'sequel-json'
+gem 'redis'
+gem 'redis_orm'
 
 gem 'puma'
 gem 'foreman'
+
+group :development do
+    gem 'debugger'
+end
 
 group :test do
     gem 'rack-test'
