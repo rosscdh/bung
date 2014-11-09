@@ -19,17 +19,16 @@ curl -H "Accept: application/json" -H "Content-Type: application/json" -XPOST 'h
 ```
 
 2. notice that the response hash consists of the :to_email => :user_hash+:record_hash@
-3. you will need to append your MX domain to the id hash. i.e. '837b3c+8f498a3049d0013240a514109fe3e051@' becomes '837b3c+8f498a3049d0013240a514109fe3e051@your_awesome_domain.com'
-4. you will then need to send out the email using whatever service you use
-
+3. please note: you pass in the domain of your service that will be sending and recieving the anonymous emails which is then appended to the generated hash
+4. you will then need to send out the email using whatever service you use to do that (mailchimp,sendgrid et al)
 5. the recipients each get the email with the reply-to/from being the '837b3c+8f498a3049d0013240a514109fe3e051@your_awesome_domain.com' value
 6. they respond (as they do)
-7. your service recieves the email and then sends the recipient email address.. i.e. '837b3c+8f498a3049d0013240a514109fe3e051@your_awesome_domain.com'
+7. your service recieves the email and then sends the recipient (:hash@my_awesome_domain.com) email address.. i.e. '837b3c+8f498a3049d0013240a514109fe3e051@your_awesome_domain.com'
 8. yes, thats right its a bit weird.. I did say the recipient.. but its a reductive-boolean-union of the email address list
 9. query the api like so
 
 ```
-curl -H "Accept: application/json" -H "Content-Type: application/json" -XPOST 'http://localhost:9292/v1/responded' -d '{"from": "837b3c+4b6ba9204a23013240b714109fe3e051"}'
+curl -H "Accept: application/json" -H "Content-Type: application/json" -XPOST 'http://localhost:9292/v1/responded' -d '{"from": "837b3c+4b6ba9204a23013240b714109fe3e051@my_awesome_domain.com"}'
 
 >> {
     "c103a2+4b6ba9204a23013240b714109fe3e051@":"userB@someotherexample.de",
@@ -37,7 +36,9 @@ curl -H "Accept: application/json" -H "Content-Type: application/json" -XPOST 'h
 }
 ``` 
 
-10. and now you can forward the email message (which you recieved just before you could query the bunghole) onto the listed recipients
+
+10. Please not: You do not have to provide the domain here, as its extracted from the from value
+11. and now you can forward the email message (which you recieved just before you could query the bunghole) onto the listed recipients
 
 
 
