@@ -30,7 +30,8 @@ curl -H "Accept: application/json" -H "Content-Type: application/json" -XPOST 'h
 >> {"c103a2+8f498a3049d0013240a514109fe3e051@":"userB@someotherexample.de","24ca58+8f498a3049d0013240a514109fe3e051@":"userC@monkeypalace.eu"}
 ``` 
 
-10. and now you can forward the email message onto the other recipients
+10. and now you can forward the email message (which you recieved just before you could query the bunghole) onto the listed recipients
+
 
 
 Install
