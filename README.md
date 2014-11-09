@@ -37,7 +37,7 @@ curl -H "Accept: application/json" -H "Content-Type: application/json" -XPOST 'h
 ``` 
 
 
-10. Please not: You do not have to provide the domain here, as its extracted from the from value
+10. Please note: You do not have to provide the domain here, as its extracted from the from value
 11. so now you know who is going to be recieving this reply.. so go ahead and send the email to them.. makeing sure that the reply-to and from are set as the specific user hash
 
 
