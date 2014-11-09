@@ -56,6 +56,8 @@ ToDo
 ----
 
 1. add data field to record statistics and such
-2. tests.
-3. loadtest (stormforger.com)
-4. send ross a note
+2. sidekik job to save data to actual database using the uuid as a lookup index
+3. in case of not found double check with database using same indexed uuid
+4. tests.
+5. loadtest (stormforger.com)
+6. send ross a note
