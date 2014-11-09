@@ -31,8 +31,8 @@ curl -H "Accept: application/json" -H "Content-Type: application/json" -XPOST 'h
 curl -H "Accept: application/json" -H "Content-Type: application/json" -POST 'http://localhost:9292/v1/responded' -d '{"from": "837b3c+4b6ba9204a23013240b714109fe3e051@my_awesome_domain.com"}'
 
 >> {
-    "c103a2+4b6ba9204a23013240b714109fe3e051@my_awesome_domain.com":"userB@someotherexample.de",
-    "24ca58+4b6ba9204a23013240b714109fe3e051@my_awesome_domain.com":"userC@monkeypalace.eu"
+    "userB@someotherexample.de":"c103a2+4b6ba9204a23013240b714109fe3e051@my_awesome_domain.com",
+    "userC@monkeypalace.eu":"24ca58+4b6ba9204a23013240b714109fe3e051@my_awesome_domain.com"
 }
 ```
 

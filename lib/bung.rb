@@ -39,11 +39,7 @@ module Bung
     def self.append_domain( user_hash, domain )
       new_user_hash = {}
       user_hash.each do |key, val|
-        unless key.include? '@'
-          new_user_hash["#{key}@#{domain}"] = val
-        else
-          new_user_hash[key] = "#{val}@#{domain}"
-        end
+        new_user_hash[val] = "#{key}@#{domain}"
       end
       new_user_hash
     end
