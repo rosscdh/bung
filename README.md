@@ -31,14 +31,14 @@ curl -H "Accept: application/json" -H "Content-Type: application/json" -XPOST 'h
 curl -H "Accept: application/json" -H "Content-Type: application/json" -XPOST 'http://localhost:9292/v1/responded' -d '{"from": "837b3c+4b6ba9204a23013240b714109fe3e051@my_awesome_domain.com"}'
 
 >> {
-    "c103a2+4b6ba9204a23013240b714109fe3e051@":"userB@someotherexample.de",
-    "24ca58+4b6ba9204a23013240b714109fe3e051@":"userC@monkeypalace.eu"
+    "c103a2+4b6ba9204a23013240b714109fe3e051@my_awesome_domain.com":"userB@someotherexample.de",
+    "24ca58+4b6ba9204a23013240b714109fe3e051@my_awesome_domain.com":"userC@monkeypalace.eu"
 }
 ``` 
 
 
 10. Please not: You do not have to provide the domain here, as its extracted from the from value
-11. and now you can forward the email message (which you recieved just before you could query the bunghole) onto the listed recipients
+11. so now you know who is going to be recieving this reply.. so go ahead and send the email to them.. makeing sure that the reply-to and from are set as the specific user hash
 
 
 
