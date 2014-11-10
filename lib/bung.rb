@@ -1,6 +1,7 @@
 require 'grape'
 require 'debugger'
 require './lib/services'
+require './lib/entities'
 
 module Bung
   class API < Grape::API
@@ -32,6 +33,7 @@ module Bung
         @domain = params[:from].split('@')[1]
         service = Bung::EmailResponseService.new params[:from]
         Bung::API.append_domain service.process, @domain
+        #expose Bung::API.append_domain service.process, @domain, using: API::ReplyTo, as: :replyto
       end
 
     end
@@ -39,7 +41,7 @@ module Bung
     def self.append_domain( user_hash, domain )
       new_user_hash = {}
       user_hash.each do |key, val|
-        new_user_hash[val] = "#{key}@#{domain}"
+        new_user_hash[key] = "#{val}@#{domain}"
       end
       new_user_hash
     end
