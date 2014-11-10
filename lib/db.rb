@@ -27,21 +27,23 @@ class BungModel < RedisOrm::Base
     reply_to = {}
     emails.each do |email|
       if user_hash( email ) != user_id
-        reply_to[reply_to_user_hash( email )] = email
+        reply_to[email] = reply_to_user_hash( email )
       end
     end
     reply_to
   end
 
   def sender( user_id )
-    sender = nil
+    resp = {}
+    sender_email = nil
     emails.each do |email|
       if user_hash( email ) == user_id
-        sender = email
+        sender_email = email
         break
       end
     end
-    sender
+    resp[sender_email] = reply_to_user_hash( sender_email )
+    resp
   end
 
   def reply_to_user_hash( email )
