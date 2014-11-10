@@ -31,7 +31,10 @@ module Bung
         status 202
         @domain = params[:from].split('@')[1]
         service = Bung::EmailResponseService.new params[:from]
-        service.process
+        resp = service.process
+        resp["recipients"] = Bung::API.append_domain resp["recipients"], @domain
+        resp["sender"] = Bung::API.append_domain resp["sender"], @domain
+        resp
       end
 
     end

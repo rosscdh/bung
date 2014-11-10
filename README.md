@@ -31,10 +31,10 @@ curl -H "Accept: application/json" -H "Content-Type: application/json" -POST 'ht
 
 >> {"recipients":
         {
-          "ross@nowhere.com":"d3ebb0+cdb33b004b50013240cd14109fe3e051",
-          "bob@example.com":"a460e3+cdb33b004b50013240cd14109fe3e051"
+          "ross@nowhere.com":"d3ebb0+cdb33b004b50013240cd14109fe3e051@my_awesome_domain.com",
+          "bob@example.com":"a460e3+cdb33b004b50013240cd14109fe3e051@my_awesome_domain.com"
         },
-    "sender": {"jack@yahoo.com":"928025+cdb33b004b50013240cd14109fe3e051"}
+    "sender": {"jack@yahoo.com":"928025+cdb33b004b50013240cd14109fe3e051@my_awesome_domain.com"}
   }
 ```
 
