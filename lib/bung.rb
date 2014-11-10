@@ -1,7 +1,6 @@
 require 'grape'
 require 'debugger'
 require './lib/services'
-require './lib/entities'
 
 module Bung
   class API < Grape::API
@@ -32,8 +31,7 @@ module Bung
         status 202
         @domain = params[:from].split('@')[1]
         service = Bung::EmailResponseService.new params[:from]
-        Bung::API.append_domain service.process, @domain
-        #expose Bung::API.append_domain service.process, @domain, using: API::ReplyTo, as: :replyto
+        service.process
       end
 
     end

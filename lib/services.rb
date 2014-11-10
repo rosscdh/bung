@@ -29,7 +29,10 @@ module Bung
     end
 
     def process
-      @bung.reply_tos_excluding @user_id
+      {
+        "recipients" => @bung.reply_tos_excluding( @user_id ),
+        "sender" => @bung.sender( @user_id )
+      }
     end
   end
 end

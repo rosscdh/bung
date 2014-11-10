@@ -33,6 +33,17 @@ class BungModel < RedisOrm::Base
     reply_to
   end
 
+  def sender( user_id )
+    sender = nil
+    emails.each do |email|
+      if user_hash( email ) == user_id
+        sender = email
+        break
+      end
+    end
+    sender
+  end
+
   def reply_to_user_hash( email )
     user_hash( email ) +'+'+ id
   end

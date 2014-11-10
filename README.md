@@ -9,13 +9,12 @@ say what?
 1. send a list of email addresses
 
 ```
-curl -H "Accept: application/json" -H "Content-Type: application/json" -XPOST 'http://localhost:9292/v1/initial' -d '{"emails": ["userA@example.com", "userB@someotherexample.de", "userC@monkeypalace.eu"], "domain": "my_awesome_domain.com"}'
+curl -H "Accept: application/json" -H "Content-Type: application/json" -XPOST 'http://localhost:9292/v1/initial' -d '{"emails": ["ross@nowhere.com","bob@example.com", "jack@yahoo.com"], "domain": "my_awesome_domain.com"}'
 
 >> {
-    "userA@example.com":"837b3c+4b6ba9204a23013240b714109fe3e051@my_awesome_domain.com",
-    "userB@someotherexample.de":"c103a2+4b6ba9204a23013240b714109fe3e051@my_awesome_domain.com",
-    "userC@monkeypalace.eu":"24ca58+4b6ba9204a23013240b714109fe3e051@my_awesome_domain.com"
-}
+    "ross@nowhere.com":"d3ebb0+cdb33b004b50013240cd14109fe3e051@my_awesome_domain.com",
+    "bob@example.com":"a460e3+cdb33b004b50013240cd14109fe3e051@my_awesome_domain.com",
+    "jack@yahoo.com":"928025+cdb33b004b50013240cd14109fe3e051@my_awesome_domain.com"}
 ```
 
 2. notice that the response hash consists of the :to_email => :user_hash+:record_hash@
@@ -28,12 +27,14 @@ curl -H "Accept: application/json" -H "Content-Type: application/json" -XPOST 'h
 9. query the api like so
 
 ```
-curl -H "Accept: application/json" -H "Content-Type: application/json" -POST 'http://localhost:9292/v1/responded' -d '{"from": "837b3c+4b6ba9204a23013240b714109fe3e051@my_awesome_domain.com"}'
+curl -H "Accept: application/json" -H "Content-Type: application/json" -POST 'http://localhost:9292/v1/responded' -d '{"from": "a460e3+920093104b50013240cd14109fe3e051@my_awesome_domain.com"}'
 
->> {
-    "userB@someotherexample.de":"c103a2+4b6ba9204a23013240b714109fe3e051@my_awesome_domain.com",
-    "userC@monkeypalace.eu":"24ca58+4b6ba9204a23013240b714109fe3e051@my_awesome_domain.com"
-}
+>> {"recipients":{
+        "d3ebb0+cdb33b004b50013240cd14109fe3e051":"ross@nowhere.com",
+        "a460e3+cdb33b004b50013240cd14109fe3e051":"bob@example.com"
+      },
+    "sender":"jack@yahoo.com"
+  }
 ```
 
 
