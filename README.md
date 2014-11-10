@@ -97,7 +97,7 @@ Install
 2. git clone https://github.com/rosscdh/bung.git
 3. bundle # to install all the stuff
 4. ensure you have redis running: $redis = Redis.new(:host => 'localhost', :port => 6379)
-5. foreman start puma
+5. foreman start web
 6. 6. hit that api
 
 ToDo
