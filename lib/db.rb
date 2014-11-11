@@ -3,7 +3,7 @@ require 'debugger'
 require 'redis_orm'
 require 'digest/sha1'
 
-$redis = Redis.new(:host => 'localhost', :port => 6379)
+$redis = Redis.new(:host => ENV.fetch('REDIS_HOST', 'localhost'), :port => ENV.fetch('REDIS_PORT', 6379))
 
 
 class BungModel < RedisOrm::Base
