@@ -1,5 +1,4 @@
 require './lib/db'
-require 'debugger'
 
 module Bung
   #

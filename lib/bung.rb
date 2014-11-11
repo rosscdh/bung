@@ -1,5 +1,4 @@
 require 'grape'
-require 'debugger'
 require './lib/services'
 
 module Bung

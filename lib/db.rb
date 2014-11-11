@@ -1,5 +1,4 @@
 require 'redis'
-require 'debugger'
 require 'redis_orm'
 require 'digest/sha1'
 
