@@ -17,14 +17,7 @@ curl -H "Accept: application/json" -H "Content-Type: application/json" -XPOST 'h
     "jack@yahoo.com":"928025+cdb33b004b50013240cd14109fe3e051@my_awesome_domain.com"}
 ```
 
-2. notice that the response hash consists of the :to_email => :user_hash+:record_hash@
-3. please note: you pass in the domain of your service that will be sending and recieving the anonymous emails which is then appended to the generated hash
-4. you will then need to send out the email using whatever service you use to do that (mailchimp,sendgrid et al)
-5. the recipients each get the email with the reply-to/from being the '837b3c+8f498a3049d0013240a514109fe3e051@your_awesome_domain.com' value
-6. they respond (as they do)
-7. your service recieves the email and then sends the recipient (:hash@my_awesome_domain.com) email address.. i.e. '837b3c+8f498a3049d0013240a514109fe3e051@your_awesome_domain.com'
-8. yes, thats right its a bit weird.. I did say the recipient.. but its an exclusion-boolean-union of the email address list
-9. query the api like so
+2. query the endpoint with the reply-to email that is being recieved; this will provide you with the recipient emails to forward the message on to as well as the sender info
 
 ```
 curl -H "Accept: application/json" -H "Content-Type: application/json" -POST 'http://localhost:9292/v1/responded' -d '{"from": "a460e3+920093104b50013240cd14109fe3e051@my_awesome_domain.com"}'
@@ -38,9 +31,6 @@ curl -H "Accept: application/json" -H "Content-Type: application/json" -POST 'ht
   }
 ```
 
-
-10. Please note: You do not have to provide the domain here, as its extracted from the from value
-11. so now you know who is going to be recieving this reply.. so go ahead and send the email to them.. makeing sure that the reply-to and from are set as the specific user hash
 
 
 Apache Bench
